@@ -1,7 +1,7 @@
 const dataButton = document.getElementById('get_data')
-let currentQuery = 'nebula'
+let currentQuery = 'comet'
 let min, max
-let totalHits
+let totalHits = []
 let show
 let rnd
 
@@ -17,6 +17,14 @@ async function getData() {
     const res = await fetch(`https://images-api.nasa.gov/search?q=${currentQuery}`)
     const data = await res.json()
     //static max sent per request. Modify to actual total_hits param
+    if(!data.collection.links) {
+        max = data.collection.metadata.total_hits
+    } else {
+        for (i = 1; i < data.collection.metadata.total_hits/100; i++){
+            totalHits = data.collection.items
+            nextPage = await fetch(`https://images-api.nasa.gov/search?q=${currentQuery}`)
+        }
+    }
     const max = 99
 
     //generate random number as to select which description + image combo to show
