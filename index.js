@@ -1,8 +1,6 @@
 const dataButton = document.getElementById('get_data')
-let currentQuery = 'comet'
+let currentQuery = 'nebula'
 let min, max
-let totalHits = []
-let show
 let rnd
 
 dataButton.addEventListener('click', getData)
@@ -14,27 +12,21 @@ function generateRndNumber (min, max) {
 
 async function getData() {
     //get data from nasa image api
-    const res = await fetch(`https://images-api.nasa.gov/search?q=${currentQuery}`)
-    const data = await res.json()
-    //static max sent per request. Modify to actual total_hits param
-    if(!data.collection.links) {
-        max = data.collection.metadata.total_hits
-    } else {
-        for (i = 1; i < data.collection.metadata.total_hits/100; i++){
-            totalHits = data.collection.items
-            nextPage = await fetch(`https://images-api.nasa.gov/search?q=${currentQuery}`)
-        }
-    }
+    let res = await fetch(`https://images-api.nasa.gov/search?q=${currentQuery}`)
+    let data = await res.json()
+    //determine how many pages there are for the query
+    let numberOfPages = Math.ceil(data.collection.metadata.total_hits / 100)
+    let rndPage = Math.floor(Math.random() * (numberOfPages - 1) + 1)
+    //fetch new data with randomized page
+    res = await fetch(`https://images-api.nasa.gov/search?q=${currentQuery}&page=${rndPage}`)
+    data = await res.json()
+    //max entries per page
     const max = 99
-
     //generate random number as to select which description + image combo to show
     generateRndNumber(0, max)
-
-    //insert description into DOM
-    document.getElementById('text_output').innerHTML = data.collection.items[rnd].data[0].description
-
     //get nasa_id param to use on image URL
     let imgLink = data.collection.items[rnd].data[0].nasa_id
+    //insert description and image into DOM
+    document.getElementById('text_output').innerHTML = data.collection.items[rnd].data[0].description
     document.getElementById('img_output').src = `http://images-assets.nasa.gov/image/${imgLink}/${imgLink}~orig.jpg`
-
 }
