@@ -45,27 +45,6 @@ select option {
     color: rgba(255, 255, 255, 1);
 }
 
-
-.text {
-    display: block;
-    position: relative;
-    margin-top: 100vh;
-    width: 100vw;
-    height: 80vh;
-    z-index: 10;
-    color: rgba(255, 255, 255, 1);
-    text-align: left;
-    overflow: scroll;
-    background-color: rgba(0, 0, 0, 0.9)
-}
-
-
-.text p {
-    padding: 50px 100px 10px 100px;
-    font-size: 1.5rem;
-    font-family: 'Lekton', sans-serif;
-}
-
 main {
     grid-column-start: 2;
     grid-row-start: span 3;
@@ -86,6 +65,70 @@ main {
     z-index: -1;
 }
 
+.description {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    bottom: 0;
+    justify-content: center;
+    padding-bottom: 20px;
+    font-size: 1.2rem;
+    font-family: sans-serif;
+    color: rgba(255, 255, 255, 0.7);
+    animation-name: FadeOutIn;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    -moz-animation-name: FadeOutIn;
+    -moz-animation-duration: 4s;
+    -moz-animation-iteration-count: infinite;
+    -webkit-animation-name: FadeOutIn;
+    -webkit-animation-duration: 4s;
+    -webkit-animation-iteration-count: infinite;
+}
+
+.fa-caret-down {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+@keyframes FadeOutIn {
+    0% {opacity: 0}
+    50% {opacity: 1}
+    100% {opacity: 0}
+}
+
+.text {
+    display: block;
+    position: relative;
+    margin-top: 100vh;
+    width: 100vw;
+    height: auto;
+    min-height: 40vh;
+    z-index: 10;
+    color: rgba(255, 255, 255, 1);
+    text-align: left;
+    overflow: scroll;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.text h3 {
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    font-size: 1.5rem;
+    font-family: 'Lekton', sans-serif;
+}
+
+#text_output {
+    padding: 50px 20% 50px 20%;
+    font-size: 1.5rem;
+    font-family: 'Lekton', sans-serif; 
+}
+
+#text_output a {
+    color: rgba(255, 255, 255, 1)
+}
+
 footer {
     height: 30px;
     width: 100vw;
@@ -98,4 +141,9 @@ footer {
 footer p {
     font-family: sans-serif;
     color: rgba(250, 250, 250, 1);
+    padding-left: 30px;
+}
+
+.fa-heart {
+    color: rgb(231, 12, 56)
 }

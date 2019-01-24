@@ -11,7 +11,7 @@
 </head>
 <body onload="getData()">
     <div id="pageTitle">
-        <h2>Explore </h2>
+        <h2>Explore</h2><br>
         <label for="query_selector"></label>
         <select id="query_selector">
             <option value="nebula">Nebulas</option>
@@ -21,16 +21,23 @@
             <option value="constelation">Constelations</option>
         </select> 
     </div> 
-    <div class="text fade-in"><p id="text_output"></p></div>
+    <div class="text">
+        <h3 id="image_title"></h3>
+        <p id="text_output"></p>
+    </div>
 
     <main>
     <div id="image_div">
         <img src="" alt="" id="img_output">
     </div>
+    <span class="description">
+            <i class="fas fa-caret-down"></i> Description <i class="fas fa-caret-down"></i>
+    </span>
+   
     </main>
 
     <footer>
-        <div><p>Desenvolvido com s2 por Pedro Morissawa</p></div>
+        <div><p>Desenvolvido com <i class="fas fa-heart"></i> por Pedro Morissawa</p></div>
     </footer>
 </body>
 
