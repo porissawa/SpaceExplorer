@@ -1,24 +1,28 @@
-const dataButton = document.getElementById('get_data')
-let currentQuery = 'nebula'
+const imageDiv = document.getElementById('image_div')
+let initialQuery = ''
 let min, max
 let rnd
+let currentQuery = document.getElementById('query_selector')
 
-dataButton.addEventListener('click', getData)
+// dataButton.addEventListener('click', getData)
+imageDiv.addEventListener('click', getData)
+currentQuery.addEventListener('change', getData)
 
-function generateRndNumber (min, max) {
+function generateRndNumber(min, max) {
     rnd = Math.floor(Math.random() * (max - min) + min)
     return rnd  
 }
 
 async function getData() {
+    searchQuery = currentQuery.value
     //get data from nasa image api
-    let res = await fetch(`https://images-api.nasa.gov/search?q=${currentQuery}`)
+    let res = await fetch(`https://images-api.nasa.gov/search?q=${searchQuery}`)
     let data = await res.json()
     //determine how many pages there are for the query
     let numberOfPages = Math.ceil(data.collection.metadata.total_hits / 100)
     let rndPage = Math.floor(Math.random() * (numberOfPages - 1) + 1)
     //fetch new data with randomized page
-    res = await fetch(`https://images-api.nasa.gov/search?q=${currentQuery}&page=${rndPage}`)
+    res = await fetch(`https://images-api.nasa.gov/search?q=${searchQuery}&page=${rndPage}`)
     data = await res.json()
     //max entries per page
     const max = 99
@@ -26,6 +30,7 @@ async function getData() {
     generateRndNumber(0, max)
     //get nasa_id param to use on image URL
     let imgLink = data.collection.items[rnd].data[0].nasa_id
+
     //insert description and image into DOM
     document.getElementById('text_output').innerHTML = data.collection.items[rnd].data[0].description
     document.getElementById('img_output').src = `http://images-assets.nasa.gov/image/${imgLink}/${imgLink}~orig.jpg`
