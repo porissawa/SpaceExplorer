@@ -41,6 +41,10 @@ async function getData() {
         //insert description and image into DOM
         document.getElementById('image_title').innerHTML = data.collection.items[rnd].data[0].title
         document.getElementById('text_output').innerHTML = data.collection.items[rnd].data[0].description
-        document.getElementById('img_output').src = `http://images-assets.nasa.gov/image/${imgLink}/${imgLink}~orig.jpg`
+        if(window.innerWidth <= 1024 && res.status !== 403) {
+            document.getElementById('img_output').src = `http://images-assets.nasa.gov/image/${imgLink}/${imgLink}~small.jpg`
+        } else {
+            document.getElementById('img_output').src = `http://images-assets.nasa.gov/image/${imgLink}/${imgLink}~orig.jpg`
+        }
     }
 }
