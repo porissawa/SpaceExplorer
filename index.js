@@ -34,6 +34,7 @@ async function getData() {
     generateRndNumber(0, max)
     //get nasa_id param to use on image URL
     let imgLink = data.collection.items[rnd].data[0].nasa_id
+    let smallImg = await fetch(`http://images-assets.nasa.gov/image/${imgLink}/${imgLink}~small.jpg`)
 
     if(data.collection.items[rnd].data[0].media_type !== 'image') {
         getData()
@@ -41,9 +42,9 @@ async function getData() {
         //insert description and image into DOM
         document.getElementById('image_title').innerHTML = data.collection.items[rnd].data[0].title
         document.getElementById('text_output').innerHTML = data.collection.items[rnd].data[0].description
-        //fix condition. res.status refers to the API request, not the image database req
-        if(window.innerWidth <= 1024 && res.status !== 403) {
-            document.getElementById('img_output').src = `http://images-assets.nasa.gov/image/${imgLink}/${imgLink}~small.jpg`
+        
+        if(window.innerWidth < 1281 && smallImg.status == 200) {
+            document.getElementById('img_output').src = smallImg.url
         } else {
             document.getElementById('img_output').src = `http://images-assets.nasa.gov/image/${imgLink}/${imgLink}~orig.jpg`
         }

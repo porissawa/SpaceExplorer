@@ -2,7 +2,7 @@
     margin: 0px;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1280px) {
     #pageTitle {
         position: absolute;
         top: 0;
@@ -139,11 +139,11 @@
     }
 
     .fa-heart {
-        color: rgb(231, 12, 56)
+        color: rgba(231, 12, 56, 0.9);
     }
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 1279px) {
     #pageTitle {
         display: flex;
         flex-direction: column;
@@ -151,7 +151,8 @@
         align-items: center;
         width: 100%;
         height: 30vh;
-        background-image: linear-gradient(to left, rgba(0, 115, 195, 1), rgba(0, 214, 171, 1))
+        background-image: linear-gradient(to left, rgba(0, 115, 195, 1), rgba(0, 214, 171, 1));
+        color: rgba(255, 255, 255, 0.9);
     }
 
     #pageTitle h2 {
@@ -164,7 +165,7 @@
     select {
         display: inline;
         border: transparent;
-        border-bottom: 3px solid rgba(0, 0, 0, 1);
+        border-bottom: 3px solid rgba(255, 255, 255, 0.8);
         padding: 0px;
         margin: 0px;
         background-color: transparent;
@@ -172,7 +173,7 @@
         font-size: 2rem;
         font-family: 'Lekton', sans-serif;
         font-weight: 700;
-        color: rgba(0,0,0, 1);
+        color: rgba(255, 255, 255, 0.9);
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
@@ -183,7 +184,7 @@
         font-size: 3rem;
         font-family: 'Lekton', sans-serif;
         font-weight: 700;
-        color: rgba(255, 255, 255, 1);
+        color: rgba(0, 0, 0, 0.9);
     }
 
     #image_div {
@@ -252,6 +253,6 @@
     }
 
     .fa-heart {
-        color: rgb(231, 12, 56)
+        color: rgba(231, 12, 56, 0.9)
     }
 }
