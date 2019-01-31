@@ -34,7 +34,7 @@ async function getData() {
     generateRndNumber(0, max)
     //get nasa_id param to use on image URL
     let imgLink = data.collection.items[rnd].data[0].nasa_id
-    let smallImg = await fetch(`http://images-assets.nasa.gov/image/${imgLink}/${imgLink}~small.jpg`)
+    let smallImg = await fetch(`https://images-assets.nasa.gov/image/${imgLink}/${imgLink}~small.jpg`)
 
     if(data.collection.items[rnd].data[0].media_type !== 'image') {
         getData()
@@ -46,7 +46,7 @@ async function getData() {
         if(window.innerWidth < 1281 && smallImg.status == 200) {
             document.getElementById('img_output').src = smallImg.url
         } else {
-            document.getElementById('img_output').src = `http://images-assets.nasa.gov/image/${imgLink}/${imgLink}~orig.jpg`
+            document.getElementById('img_output').src = `https://images-assets.nasa.gov/image/${imgLink}/${imgLink}~orig.jpg`
         }
     }
 }
